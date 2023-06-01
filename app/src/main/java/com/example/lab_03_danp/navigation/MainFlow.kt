@@ -1,6 +1,8 @@
 package com.example.lab_03_danp.navigation
 
+import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.ViewModelProvider
 import com.example.lab_03_danp.navigation.Route.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -9,9 +11,14 @@ import com.example.lab_03_danp.screens.courseRegister.CourseRegisterScreen
 import com.example.lab_03_danp.screens.home.HomeScreen
 import com.example.lab_03_danp.screens.student.StudentRegisterScreen
 import com.example.lab_03_danp.screens.courseList.CourseListScreen
+import com.example.lab_03_danp.screens.viewModel.AppViewModel
 
 @Composable
-fun MainFlow(){
+fun MainFlow(
+    viewModel: AppViewModel
+){
+
+
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = Home.route){
@@ -29,14 +36,14 @@ fun MainFlow(){
             )
         }
         composable(StudentRegister.route){
-            StudentRegisterScreen()
+            StudentRegisterScreen(viewModel)
 
         }
         composable(CourseRegister.route){
-            CourseRegisterScreen()
+            CourseRegisterScreen(viewModel)
         }
         composable(CourseList.route){
-            CourseListScreen()
+            CourseListScreen(viewModel)
         }
     }
 }
