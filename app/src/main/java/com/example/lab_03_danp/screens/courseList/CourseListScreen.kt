@@ -36,7 +36,7 @@ fun CourseListScreen(
                                 var aux2 = it
                                 listStudentCourseCrossRef.forEach {
                                     if (it.courseId == aux.courseId && it.studentId == aux2.studentId) {
-                                        Text(text = "-->"+aux2.studentName)
+                                        Text(text = " "+aux2.studentName + ",")
                                     }
                                 }
                             }

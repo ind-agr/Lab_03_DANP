@@ -17,8 +17,6 @@ import com.example.lab_03_danp.screens.viewModel.AppViewModel
 fun MainFlow(
     viewModel: AppViewModel
 ){
-
-
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = Home.route){
@@ -36,11 +34,16 @@ fun MainFlow(
             )
         }
         composable(StudentRegister.route){
-            StudentRegisterScreen(viewModel)
-
+            StudentRegisterScreen(viewModel,
+            navHome = {
+                navController.navigate(Home.route)
+            })
         }
         composable(CourseRegister.route){
-            CourseRegisterScreen(viewModel)
+            CourseRegisterScreen(viewModel,
+                navHome = {
+                    navController.navigate(Home.route)
+                })
         }
         composable(CourseList.route){
             CourseListScreen(viewModel)

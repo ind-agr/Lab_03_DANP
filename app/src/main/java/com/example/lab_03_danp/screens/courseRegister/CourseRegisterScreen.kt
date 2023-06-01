@@ -33,7 +33,8 @@ import com.example.lab_03_danp.screens.viewModel.AppViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CourseRegisterScreen(
-    viewModel: AppViewModel
+    viewModel: AppViewModel,
+    navHome: () -> Unit
 ){
 
     Surface(
@@ -41,9 +42,12 @@ fun CourseRegisterScreen(
     ) {
         var courseName by rememberSaveable { mutableStateOf(("")) }
 
-        LazyColumn(horizontalAlignment = Alignment.CenterHorizontally, modifier = Modifier
+        LazyColumn(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier
             .fillMaxWidth()
-            .fillMaxHeight(), verticalArrangement = Arrangement.Center ) {
+            .fillMaxHeight(),
+            verticalArrangement = Arrangement.Center ) {
 
             item {
                 Text(text = "Registrar Curso ", textAlign = TextAlign.Center,
@@ -56,10 +60,20 @@ fun CourseRegisterScreen(
                     } ,
                     label = { Text(text = "Nombre del Curso") }
                 )
-                Button(onClick = { viewModel.addCourse(CourseEntity(0, courseName)) }) {
+                Button(onClick = {
+                    viewModel.addCourse(CourseEntity(0, courseName))
+                }) {
                     Text(text = "Registrar")
                 }
+                Button(onClick = {
+                    navHome()
+                }) {
+                    Icon(painter = painterResource(id = R.drawable.baseline_arrow_back_24), contentDescription = null )
+
+                }
             }
+
         }
+
     }
 }
